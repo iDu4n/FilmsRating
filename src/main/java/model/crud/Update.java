@@ -1,4 +1,4 @@
-package model.CRUD;
+package model.crud;
 
 
 import model.CRUDutils;
@@ -7,6 +7,8 @@ import model.Tables;
 import java.sql.SQLException;
 
 public class Update {
+
+    private Update() {}
     public static void start(int choiceTable) throws SQLException {
         if (choiceTable == 1) CRUDutils.updateActors();
         else if (choiceTable == 2) CRUDutils.updateCategory();

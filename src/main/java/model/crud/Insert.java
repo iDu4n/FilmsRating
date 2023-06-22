@@ -1,4 +1,4 @@
-package model.CRUD;
+package model.crud;
 
 import model.CRUDutils;
 import model.Tables;
@@ -6,6 +6,8 @@ import model.Tables;
 import java.sql.SQLException;
 
 public class Insert {
+
+    private Insert() {}
     public static void start(int choiceTable) throws SQLException {
         if (choiceTable == 1) CRUDutils.insertActors();
         else if (choiceTable == 2) CRUDutils.insertCategory();

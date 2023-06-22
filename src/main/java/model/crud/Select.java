@@ -1,10 +1,12 @@
-package model.CRUD;
+package model.crud;
 import model.CRUDutils;
 import model.Tables;
 
 import java.sql.*;
 
 public class Select {
+
+    private Select() {}
     public static void start(int choiceTable) throws SQLException {
         if (choiceTable == 1) CRUDutils.selectActors();
         else if (choiceTable == 2) CRUDutils.selectCategory();

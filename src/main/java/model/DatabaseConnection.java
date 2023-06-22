@@ -6,17 +6,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
+    private static final Logger logger = Logger.getLogger(CRUDutils.class.getName());
+    private static Connection connection = null;
+
+    private DatabaseConnection() {}
     public static Connection databaseConnect() {
-        FileInputStream fis;
         Properties property = new Properties();
 
         String url = "", login = "", password = "";
 
-        try {
-            fis = new FileInputStream("src/main/resources/file.txt");
+        try (FileInputStream fis = new FileInputStream("src/main/resources/file.txt")) {
             property.load(fis);
 
             url = property.getProperty("url");
@@ -25,18 +29,16 @@ public class DatabaseConnection {
 
         } catch (
                 IOException e) {
-            System.err.println("ОШИБКА: Файл свойств отсуствует!");
+            logger.log(Level.INFO, () -> "ОШИБКА: Файл свойств отсуствует!");
         }
-
-        Connection connection = null;
 
         try {
             connection = DriverManager
                     .getConnection(url, login, password);
-            System.out.println("You successfully connected to database");
+            logger.log(Level.INFO, () -> "You successfully connected to database");
         } catch (
                 SQLException e) {
-            System.out.println("Connection Failed");
+            logger.log(Level.INFO, () -> "Connection Failed");
             e.printStackTrace();
         }
 

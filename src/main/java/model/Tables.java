@@ -2,17 +2,21 @@ package model;
 
 import model.CRUDutils;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Tables {
 
+    private static final Logger logger = Logger.getLogger(Tables.class.getName());
+    private Tables() {}
     public static void start() throws SQLException {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("1. Actors \n" +
+        logger.log(Level.INFO, () -> "1. Actors \n" +
                            "2. Category \n" +
                            "3. Comments \n" +
                            "4. Country \n" +
@@ -25,12 +29,12 @@ public class Tables {
                            "11. User \n" +
                            "12. Выйти");
 
-        System.out.print("Выберите таблицу: ");
+        logger.log(Level.INFO, () -> "Выберите таблицу: ");
         int choiceTable = scanner.nextInt();
 
         if (choiceTable == 12) System.exit(0);
 
-        System.out.print("1. SELECT \n" +
+        logger.log(Level.INFO, () -> "1. SELECT \n" +
                          "2. INSERT \n" +
                          "3. UPDATE \n" +
                          "4. DELETE \n" +
