@@ -325,9 +325,7 @@ public class CRUDutils {
 
     public static void insertActors() {
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Actors\"(\n" +
-                                                                        "\tname, description, age)\n" +
-                                                                        "\tVALUES (?, ?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Actors\" (name, description, age)\tVALUES (?, ?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -349,9 +347,7 @@ public class CRUDutils {
 
     public static void insertCategory(){
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Category\"(\n" +
-                                                                        "\ttitle, description)\n" +
-                                                                        "\tVALUES (?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Category\" (title, description) VALUES (?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -376,9 +372,8 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> USERSLIST);
         selectUserList();
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Comments\"(\n" +
-                                                                        "\tusername, commentary, serID, userID)\n" +
-                                                                        "\tVALUES (?, ?, ?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Comments\" (username, commentary, ser_id, user_id) VALUES (?, ?, ?, ?);")) {
+
 
             Scanner scanner = new Scanner(System.in);
 
@@ -393,18 +388,16 @@ public class CRUDutils {
              statement.setInt(3, serID);
              statement.setInt(4, userID);
 
-             statement.executeUpdate();
+            statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> INSERTERROR);
+            logger.log(Level.INFO, (    ) -> INSERTERROR);
             e.printStackTrace();
         }
     }
 
     public static void insertCountry() {
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Country\"(\n" +
-                                                                        "\ttitle, description)\n" +
-                                                                        "\tVALUES (?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Country\"(title, description) VALUES (?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -429,9 +422,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> PRODUCERLIST);
         selectProducer();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Film\"(\n" +
-                                                                       "\ttitle, description, year, \"prod_id\", \"country_id\")\n" +
-                                                                       "\tVALUES (?, ?, ?, ?, ?);")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Film\"(\ttitle, description, year, prod_id, country_id) VALUES (?, ?, ?, ?, ?);")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -457,9 +448,7 @@ public class CRUDutils {
 
     public static void insertProducer() {
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Producer\"(\n" +
-                                                                        "\tname, description, age)\n" +
-                                                                        "\tVALUES (?, ?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Producer\"(name, description, age) VALUES (?, ?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -483,9 +472,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> FILMLIST);
         selectFilm();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Rating\"(\n" +
-                                                                       "\tkp, imdb, serID)\n" +
-                                                                       "\tVALUES (?, ?, ?);")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Rating\"(kp, imdb, ser_id) VALUES (?, ?, ?);")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -512,9 +499,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> USERSLIST);
         selectUserList();
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Reviews\"(\n" +
-                                                                        "\tusername, review, serID, userID)\n" +
-                                                                        "\tVALUES (?, ?, ?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Reviews\"(username, review, ser_id, user_id)\tVALUES (?, ?, ?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -543,9 +528,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> ACTORLIST);
         selectActors();
 
-         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Ser_and_Act\"(\n" +
-                                                                        "\tser_id, actID)\n" +
-                                                                        "\tVALUES (?, ?);")) {
+         try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Ser_and_Act\"(ser_id, act_id) VALUES (?, ?);")) {
 
              Scanner scanner = new Scanner(System.in);
 
@@ -570,9 +553,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> CATEGORYLIST);
         selectCategory();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Ser_and_cat\"(\n" +
-                                                                       "\tser_id, catID)\n" +
-                                                                       "\tVALUES (?, ?);")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"Ser_and_cat\"(ser_id, cat_id) VALUES (?, ?);")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -593,9 +574,7 @@ public class CRUDutils {
 
     public static void insertUser() {
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"User\"(\n" +
-                                                                       "\tusername, role, email, password)\n" +
-                                                                       "\tVALUES (?, ?, ?, ?);")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("INSERT INTO public.\"User\"(username, role, email, password) VALUES (?, ?, ?, ?);")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -893,10 +872,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> ACTORLIST);
         selectActors();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("""
-                UPDATE public."Actors"
-                	SET name=?, description=?, age=?
-                	WHERE id=?;""")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Actors\" SET name=?, description=?, age=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -925,10 +901,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> CATEGORYLIST);
         selectActors();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("""
-                UPDATE public."Category"
-                	SET title=?, description=?
-                	WHERE id = ?;""")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Category\" SET title=?, description=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -959,9 +932,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nСписок комментариев");
         selectComments();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Comments\"\n" +
-                                                                       "	SET username=?, commentary=?, ser_id=?, user_id=?\n" +
-                                                                       "	WHERE id = ?")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Comments\" SET username=?, commentary=?, ser_id=?, user_id=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -992,9 +963,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> COUNTRYLIST);
         selectCountry();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Country\"\n" +
-                                                                       "	SET title=?, description=?\n" +
-                                                                       "	WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Country\"\tSET title=?, description=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1025,9 +994,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> PRODUCERLIST);
         selectProducer();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Film\"\n" +
-                                                                       "	SET title=?, description=?, year=?, prod_id=?, country_id=?\n" +
-                                                                       "	WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Film\" SET title=?, description=?, year=?, prod_id=?, country_id=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1060,9 +1027,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> PRODUCERLIST);
         selectProducer();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Producer\"\n" +
-                                                                       "	SET name=?, description=?, age=?\n" +
-                                                                       "	WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Producer\" SET name=?, description=?, age=?\tWHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1093,9 +1058,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nСписок рейтингов:");
         selectRating();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Rating\"\n" +
-                                                                       "    SET kp=?, imdb=?, ser_id=?\n" +
-                                                                       "    WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Rating\" SET kp=?, imdb=?, ser_id=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1128,9 +1091,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nСписок рецензий");
         selectReviews();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Reviews\"\n" +
-                                                                       "	SET username=?, review=?, ser_id=?, user_id=?\n" +
-                                                                       "	WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Reviews\"\tSET username=?, review=?, ser_id=?, user_id=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1165,9 +1126,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nСписок фильмов и актёров:");
         selectSerAndAct();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Ser_and_Act\"\n" +
-                                                                       "	SET ser_id=?, act_id=?\n" +
-                                                                       "	WHERE ser_id=? AND act_id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Ser_and_Act\"\tSET ser_id=?, act_id=? WHERE ser_id=? AND act_id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1199,9 +1158,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nОтношение фильмов и категорий:");
         selectSerAndCat();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Ser_and_cat\"\n" +
-                                                                       "   SET ser_id=?, cat_id=?\n" +
-                                                                       "   WHERE ser_id=? AND cat_id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"Ser_and_cat\" SET ser_id=?, cat_id=? WHERE ser_id=? AND cat_id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -1228,11 +1185,9 @@ public class CRUDutils {
     public static void updateUser() throws SQLException {
 
         logger.log(Level.INFO, () -> "\nСписок пользователей:");
-        selectActors();
+        selectUser();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"User\"\n" +
-                                                                       "	SET username=?, role=?, email=?, password=?\n" +
-                                                                       "	WHERE id=?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("UPDATE public.\"User\" SET username=?, role=?, email=?, password=? WHERE id=?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
