@@ -11,14 +11,16 @@ import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
-    private static final Logger logger = Logger.getLogger(CRUDutils.class.getName());
+    private static final Logger logger = Logger.getLogger(DatabaseConnection.class.getName());
     private static Connection connection = null;
 
     private DatabaseConnection() {}
     public static Connection databaseConnect() {
         Properties property = new Properties();
 
-        String url = "", login = "", password = "";
+        String url = "";
+        String login = "";
+        String password = "";
 
         try (FileInputStream fis = new FileInputStream("src/main/resources/file.txt")) {
             property.load(fis);

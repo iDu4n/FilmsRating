@@ -1,7 +1,5 @@
 package model;
 
-import model.CRUDutils;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;

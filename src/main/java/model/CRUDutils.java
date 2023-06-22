@@ -96,7 +96,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -120,7 +120,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -141,7 +141,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -166,7 +166,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -188,7 +188,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -210,7 +210,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -234,7 +234,7 @@ public class CRUDutils {
              table.close();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> READERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -254,7 +254,7 @@ public class CRUDutils {
              table.close();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> READERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -275,7 +275,7 @@ public class CRUDutils {
              table.close();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> READERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -299,7 +299,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -318,7 +318,7 @@ public class CRUDutils {
             table.close();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> READERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
@@ -341,7 +341,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -361,7 +361,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -391,7 +391,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, (    ) -> INSERTERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -411,7 +411,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -442,7 +442,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> INSERTERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -464,7 +464,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -488,7 +488,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> INSERTERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -517,7 +517,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -542,7 +542,7 @@ public class CRUDutils {
              statement.executeUpdate();
          } catch(SQLException e){
              logger.log(Level.INFO, () -> INSERTERROR);
-             e.printStackTrace();
+             throw new RuntimeException(e);
          }
     }
 
@@ -568,7 +568,7 @@ public class CRUDutils {
 
         } catch(SQLException e){
             logger.log(Level.INFO, () -> INSERTERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -592,7 +592,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> INSERTERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -617,7 +617,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -640,7 +640,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -663,7 +663,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -684,7 +684,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -715,7 +715,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -738,7 +738,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -761,7 +761,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -784,7 +784,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -811,7 +811,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -824,7 +824,7 @@ public class CRUDutils {
         logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и категорий:");
         selectSerAndCat();
 
-        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Ser_and_cat\"\nWHERE id = ?;")) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Ser_and_cat\"\nWHERE ser_id = ? AND cat_id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -838,7 +838,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -863,7 +863,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> DELETEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -892,7 +892,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -919,7 +919,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -954,7 +954,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -981,7 +981,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1018,7 +1018,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1047,7 +1047,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1078,7 +1078,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1113,7 +1113,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1145,7 +1145,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1178,7 +1178,7 @@ public class CRUDutils {
 
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -1209,7 +1209,7 @@ public class CRUDutils {
             statement.executeUpdate();
         } catch(SQLException e){
             logger.log(Level.INFO, () -> UPDATEERROR);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
