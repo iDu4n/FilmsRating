@@ -41,7 +41,7 @@ public class DatabaseConnection {
         } catch (
                 SQLException e) {
             logger.log(Level.INFO, () -> "\nConnection Failed");
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
 
         return connection;
