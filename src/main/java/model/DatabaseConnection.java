@@ -29,16 +29,16 @@ public class DatabaseConnection {
 
         } catch (
                 IOException e) {
-            logger.log(Level.INFO, () -> "ОШИБКА: Файл свойств отсуствует!");
+            logger.log(Level.INFO, () -> "\nОШИБКА: Файл свойств отсуствует!");
         }
 
         try {
             connection = DriverManager
                     .getConnection(url, login, password);
-            logger.log(Level.INFO, () -> "You successfully connected to database");
+            logger.log(Level.INFO, () -> "\nYou successfully connected to database");
         } catch (
                 SQLException e) {
-            logger.log(Level.INFO, () -> "Connection Failed");
+            logger.log(Level.INFO, () -> "\nConnection Failed");
             e.printStackTrace();
         }
 

@@ -11,7 +11,7 @@ public class Application {
 
         Tables.start();
 
-        logger.log(Level.INFO, () -> "Конец");
+        logger.log(Level.INFO, () -> "\nКонец");
     }
 
     private Application() {}

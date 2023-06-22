@@ -7,21 +7,39 @@ import model.crud.Insert;
 
 import java.sql.*;
 import java.util.Scanner;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CRUDutils {
 
-    private static int ser_id;
-    private static int user_id;
+    private CRUDutils () {}
+
+    private static int serID;
+    private static int userID;
     private static int id;
     private static int age;
     private static String username;
     private static String description;
     private static String name;
     private static String title;
+    private static final String stringusernamecolumn = "username";
+    private static final String stringusername = ", username: ";
+    private static final String stringdescriptioncolumn = "description";
+    private static final String stringdescription = ", Description: ";
+    private static final String stringtitlecolumn = "title";
+    private static final String stringtitle = ", Title: ";
+    private static final String stringserIDcolumn = "ser_id";
+    private static final String stringserID = ", serID: ";
+    private static final String readerror = "\nОшибка в чтении таблицы.";
+    private static final String deleteerror = "\nНе удалось удалить строку таблицы.";
+    private static final String actorList = "\nСписок актёров:";
+    private static final String categoryList = "\nСписок категорий:";
+    private static final String filmList = "\nСписок фильмов";
+    private static final String usersList = "\nСписок пользователей";
     
+    
+    
+
 
     private static final Logger logger = Logger.getLogger(CRUDutils.class.getName());
     
@@ -39,7 +57,7 @@ public class CRUDutils {
         } else if (choiceOperation == 5) {
             Tables.start();
         } else {
-            logger.log(Level.INFO, () -> "Некорректный выбор.");
+            logger.log(Level.INFO, () -> "\nНекорректный выбор.");
         }
         Tables.start();
     }
@@ -53,10 +71,10 @@ public class CRUDutils {
              while (table.next()) {
                  id = table.getInt("id");
                  name = table.getString("name");
-                 description = table.getString("description");
+                 description = table.getString(stringdescriptioncolumn);
                  age = table.getInt("age");
 
-                 logger.log(Level.INFO, () -> "ID: " + id + ", Name: " + name + ", Description: " + description + ", Age: " + age);
+                 logger.log(Level.INFO, () -> "\nID: " + id + ", Name: " + name + stringdescription + description + ", Age: " + age);
              }
              table.close();
          }
@@ -70,15 +88,15 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                title = table.getString("title");
-                description = table.getString("description");
+                title = table.getString(stringtitlecolumn);
+                description = table.getString(stringdescriptioncolumn);
                 
-                logger.log(Level.INFO, () -> "ID: " + id + ", Title: " + title + ", Description: " + description);
+                logger.log(Level.INFO, () -> "\nID: " + id + stringtitle + title + stringdescription + description);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -91,18 +109,18 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                username = table.getString("username");
+                username = table.getString(stringusernamecolumn);
                 String comment = table.getString("commentary");
-                ser_id = table.getInt("ser_id");
-                user_id = table.getInt("user_id");
+                serID = table.getInt(stringserIDcolumn);
+                userID = table.getInt("user_id");
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", username: " + username + ", Commentary: "
-                        + comment + ", ser_id: " + ser_id + ", user_id: " + user_id);
+                logger.log(Level.INFO, () -> "\nID: " + id + stringusername + username + ", Commentary: "
+                        + comment + stringserID + serID + ", userID: " + userID);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -115,15 +133,15 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                title = table.getString("title");
-                description = table.getString("description");
+                title = table.getString(stringtitlecolumn);
+                description = table.getString(stringdescriptioncolumn);
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", Title: " + title + ", Description: " + description);
+                logger.log(Level.INFO, () -> "\nID: " + id + stringtitle + title + stringdescription + description);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -136,19 +154,19 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                title = table.getString("title");
-                description = table.getString("description");
+                title = table.getString(stringtitlecolumn);
+                description = table.getString(stringdescriptioncolumn);
                 int year = table.getInt("year");
-                int prod_id = table.getInt("prod_id");
-                int country_id = table.getInt("country_id");
+                int prodID = table.getInt("prod_id");
+                int countryID = table.getInt("country_id");
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", Title: " + title + ", Description: "
-                        + description + ", Year: " + year + ", prod_id: " + prod_id + ", country_id: " + country_id);
+                logger.log(Level.INFO, () -> "\nID: " + id + stringtitle + title + stringdescription
+                        + description + ", Year: " + year + ", prodID: " + prodID + ", countryID: " + countryID);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -162,15 +180,15 @@ public class CRUDutils {
             while (table.next()) {
                 id = table.getInt("id");
                 name = table.getString("name");
-                description = table.getString("description");
+                description = table.getString(stringdescriptioncolumn);
                 age = table.getInt("age");
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", Name: " + name + ", Description: " + description + ", Age: " + age);
+                logger.log(Level.INFO, () -> "\nID: " + id + ", Name: " + name + stringdescription + description + ", Age: " + age);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -185,14 +203,14 @@ public class CRUDutils {
                 id = table.getInt("id");
                 String kp = table.getString("kp");
                 String imdb = table.getString("imdb");
-                ser_id = table.getInt("ser_id");
+                serID = table.getInt(stringserIDcolumn);
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", Kp: " + kp + ", Imdb: " + imdb + ", ser_id: " + ser_id);
+                logger.log(Level.INFO, () -> "\nID: " + id + ", Kp: " + kp + ", Imdb: " + imdb + stringserID + serID);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -205,18 +223,18 @@ public class CRUDutils {
 
              while (table.next()) {
                  id = table.getInt("id");
-                 username = table.getString("username");
+                 username = table.getString(stringusernamecolumn);
                  String review = table.getString("review");
-                 ser_id = table.getInt("ser_id");
-                 user_id = table.getInt("user_id");
+                 serID = table.getInt(stringserIDcolumn);
+                 userID = table.getInt("user_id");
 
-                 logger.log(Level.INFO, () -> "ID: " + id + ", username: " + username + ", Review: " + review
-                         + ", ser_id: " + ser_id + ", user_id" + user_id);
+                 logger.log(Level.INFO, () -> "\nID: " + id + stringusername + username + ", Review: " + review
+                         + stringserID + serID + ", userID" + userID);
              }
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+             logger.log(Level.INFO, () -> readerror);
              e.printStackTrace();
          }
     }
@@ -228,15 +246,15 @@ public class CRUDutils {
              ResultSet table = statement.executeQuery("SELECT * FROM public.\"Ser_and_Act\"\n");
 
              while (table.next()) {
-                 ser_id = table.getInt("ser_id");
-                 int act_id = table.getInt("act_id");
+                 serID = table.getInt(stringserIDcolumn);
+                 int actID = table.getInt("act_id");
 
-                 logger.log(Level.INFO, () -> "ser_id: " + ser_id + ", act_id: " + act_id);
+                 logger.log(Level.INFO, () -> "\nser_id: " + serID + ", actID: " + actID);
              }
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+             logger.log(Level.INFO, () -> readerror);
              e.printStackTrace();
          }
     }
@@ -249,15 +267,15 @@ public class CRUDutils {
              ResultSet table = statement.executeQuery("SELECT * FROM public.\"Ser_and_cat\"\n");
 
              while (table.next()) {
-                 ser_id = table.getInt("ser_id");
-                 int cat_id = table.getInt("cat_id");
+                 serID = table.getInt(stringserIDcolumn);
+                 int catID = table.getInt("cat_id");
 
-                 logger.log(Level.INFO, () -> "ser_id: " + ser_id + ", cat_id: " + cat_id);
+                 logger.log(Level.INFO, () -> "\nser_id: " + serID + ", catID: " + catID);
              }
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+             logger.log(Level.INFO, () -> readerror);
              e.printStackTrace();
          }
     }
@@ -270,18 +288,18 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                username = table.getString("username");
+                username = table.getString(stringusernamecolumn);
                 String role = table.getString("role");
                 String email = table.getString("email");
                 String password = table.getString("password");
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", username: " + username + ", Role: "
+                logger.log(Level.INFO, () -> "\nID: " + id + stringusername + username + ", Role: "
                         + role + ", Email: " + email + ", Password: " + password);
             }
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
     }
@@ -294,13 +312,13 @@ public class CRUDutils {
 
             while (table.next()) {
                 id = table.getInt("id");
-                username = table.getString("username");
+                username = table.getString(stringusernamecolumn);
 
-                logger.log(Level.INFO, () -> "ID: " + id + ", username: " + username);
+                logger.log(Level.INFO, () -> "\nID: " + id + stringusername + username);
             }
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Ошибка в чтении таблицы.");
+            logger.log(Level.INFO, () -> readerror);
             e.printStackTrace();
         }
 
@@ -308,16 +326,14 @@ public class CRUDutils {
 
     public static void insertActors() {
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Actors"(
                 \tname, description, age)
-                \tVALUES (?, ?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите ФИО, описание и возраст актёра: ");
+             logger.log(Level.INFO, () -> "\nВведите ФИО, описание и возраст актёра: ");
              name = scanner.nextLine();
              description = scanner.nextLine();
              age = scanner.nextInt();
@@ -326,155 +342,135 @@ public class CRUDutils {
              statement.setString(2, description);
              statement.setInt(3, age);
 
-             logger.log(Level.INFO, (Supplier<String>) statement);
-
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertCategory(){
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Category"(
                 \ttitle, description)
-                \tVALUES (?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите название категории и её описание: ");
+             logger.log(Level.INFO, () -> "\nВведите название категории и её описание: ");
              title = scanner.nextLine();
              description = scanner.nextLine();
 
              statement.setString(1, title);
              statement.setString(2, description);
 
-             logger.log(Level.INFO, (Supplier<String>) statement);
-
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertComments() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список пользователей");
+        logger.log(Level.INFO, () -> usersList);
         selectUserList();
 
-        String INSERT_SQL = """
+         try (PreparedStatement PreparedStatement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Comments"(
-                \tusername, commentary, ser_id, user_id)
-                \tVALUES (?, ?, ?, ?);""";
-
-         try (PreparedStatement PreparedStatement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tusername, commentary, serID, userID)
+                \tVALUES (?, ?, ?, ?);""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите имя пользователя, комментарий к сериалу, ID этого сериала и ID пользователя: ");
+            logger.log(Level.INFO, () -> "\nВведите имя пользователя, комментарий к сериалу, ID этого сериала и ID пользователя: ");
             username = scanner.nextLine();
             String commentary = scanner.nextLine();
-            ser_id = scanner.nextInt();
-            user_id = scanner.nextInt();
+            serID = scanner.nextInt();
+            userID = scanner.nextInt();
 
             PreparedStatement.setString(1, username);
             PreparedStatement.setString(2, commentary);
-            PreparedStatement.setInt(3, ser_id);
-            PreparedStatement.setInt(4, user_id);
-
-            logger.log(Level.INFO, (Supplier<String>) PreparedStatement);
+            PreparedStatement.setInt(3, serID);
+            PreparedStatement.setInt(4, userID);
 
             PreparedStatement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void insertCountry() {
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Country"(
                 \ttitle, description)
-                \tVALUES (?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите название страны производства и описание этой страны: ");
+             logger.log(Level.INFO, () -> "\nВведите название страны производства и описание этой страны: ");
              title = scanner.nextLine();
              description = scanner.nextLine();
 
              statement.setString(1, title);
              statement.setString(2, description);
 
-             logger.log(Level.INFO, (Supplier<String>) statement);
-
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertFilm() {
 
-        logger.log(Level.INFO, () -> "Список стран:");
+        logger.log(Level.INFO, () -> "\nСписок стран:");
         selectCountry();
-        logger.log(Level.INFO, () -> "Список режиссёров:");
+        logger.log(Level.INFO, () -> "\nСписок режиссёров:");
         selectProducer();
 
-        String INSERT_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Film"(
                 \ttitle, description, year, "prod_id", "country_id")
-                \tVALUES (?, ?, ?, ?, ?);""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?, ?, ?, ?);""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите название фильма, его описание, год выхода, ID режисера и ID страны: ");
+            logger.log(Level.INFO, () -> "\nВведите название фильма, его описание, год выхода, ID режисера и ID страны: ");
             name = scanner.nextLine();
             description = scanner.nextLine();
             int year = scanner.nextInt();
-            int prod_id = scanner.nextInt();
-            int country_id = scanner.nextInt();
+            int prodID = scanner.nextInt();
+            int countryID = scanner.nextInt();
 
             statement.setString(1, name);
             statement.setString(2, description);
             statement.setInt(3, year);
-            statement.setInt(4, prod_id);
-            statement.setInt(5, country_id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(4, prodID);
+            statement.setInt(5, countryID);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void insertProducer() {
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Producer"(
                 \tname, description, age)
-                \tVALUES (?, ?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите ФИО, описание и возраст продюсера: ");
+             logger.log(Level.INFO, () -> "\nВведите ФИО, описание и возраст продюсера: ");
              name = scanner.nextLine();
              description = scanner.nextLine();
              age = scanner.nextInt();
@@ -483,159 +479,139 @@ public class CRUDutils {
              statement.setString(2, description);
              statement.setInt(3, age);
 
-             logger.log(Level.INFO, (Supplier<String>) statement);
-
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertRating() {
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
 
-        String INSERT_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Rating"(
-                \tkp, imdb, ser_id)
-                \tVALUES (?, ?, ?);""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tkp, imdb, serID)
+                \tVALUES (?, ?, ?);""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Оценку фильма на кинопоиске и imdb, ID фильма ");
+            logger.log(Level.INFO, () -> "\nОценку фильма на кинопоиске и imdb, ID фильма ");
             double kp = scanner.nextDouble();
             double imdb = scanner.nextDouble();
-            ser_id = scanner.nextInt();
+            serID = scanner.nextInt();
 
             statement.setDouble(1, kp);
             statement.setDouble(2, imdb);
-            statement.setInt(3, ser_id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(3, serID);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void insertReviews() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список пользователей");
+        logger.log(Level.INFO, () -> usersList);
         selectUserList();
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Reviews"(
-                \tusername, review, ser_id, user_id)
-                \tVALUES (?, ?, ?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tusername, review, serID, userID)
+                \tVALUES (?, ?, ?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите ФИО, описание и возраст актёра: ");
+             logger.log(Level.INFO, () -> "\nВведите ФИО, описание и возраст актёра: ");
              username = scanner.nextLine();
              String review = scanner.nextLine();
-             ser_id = scanner.nextInt();
-             user_id = scanner.nextInt();
+             serID = scanner.nextInt();
+             userID = scanner.nextInt();
 
              statement.setString(1, username);
              statement.setString(2, review);
-             statement.setInt(3, ser_id);
-             statement.setInt(4, user_id);
-
-             logger.log(Level.INFO, (Supplier<String>) statement);
+             statement.setInt(3, serID);
+             statement.setInt(4, userID);
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertSerAndAct() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список актёров:");
+        logger.log(Level.INFO, () -> actorList);
         selectActors();
 
-        String INSERT_SQL = """
+         try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Ser_and_Act"(
-                \tser_id, act_id)
-                \tVALUES (?, ?);""";
-
-         try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tser_id, actID)
+                \tVALUES (?, ?);""")) {
 
              Scanner scanner = new Scanner(System.in);
 
-             logger.log(Level.INFO, () -> "Введите ID фильма и ID актёра: ");
-             ser_id = scanner.nextInt();
-             int act_id = scanner.nextInt();
+             logger.log(Level.INFO, () -> "\nВведите ID фильма и ID актёра: ");
+             serID = scanner.nextInt();
+             int actID = scanner.nextInt();
 
-             statement.setInt(1, ser_id);
-             statement.setInt(2, act_id);
-
-             logger.log(Level.INFO, (Supplier<String>) statement);
+             statement.setInt(1, serID);
+             statement.setInt(2, actID);
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+             logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
              e.printStackTrace();
          }
     }
 
     public static void insertSerAndCat() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список категорий:");
+        logger.log(Level.INFO, () -> categoryList);
         selectCategory();
 
-        String INSERT_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."Ser_and_cat"(
-                \tser_id, cat_id)
-                \tVALUES (?, ?);""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tser_id, catID)
+                \tVALUES (?, ?);""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма и ID категории фильма: ");
-            ser_id = scanner.nextInt();
-            int cat_id = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите ID фильма и ID категории фильма: ");
+            serID = scanner.nextInt();
+            int catID = scanner.nextInt();
 
-            statement.setInt(1, ser_id);
-            statement.setInt(2, cat_id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(1, serID);
+            statement.setInt(2, catID);
 
             statement.executeUpdate();
 
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void insertUser() {
 
-        String INSERT_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 INSERT INTO public."User"(
                 \tusername, role, email, password)
-                \tVALUES (?, ?, ?, ?);""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(INSERT_SQL)) {
+                \tVALUES (?, ?, ?, ?);""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите имя пользователя, его роль, электронную почту и пароль: ");
+            logger.log(Level.INFO, () -> "\nВведите имя пользователя, его роль, электронную почту и пароль: ");
             username = scanner.nextLine();
             String role = scanner.nextLine();
             String email = scanner.nextLine();
@@ -646,355 +622,300 @@ public class CRUDutils {
             statement.setString(3, email);
             statement.setString(4, password);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось заполнить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось заполнить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void deleteActors() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и актёров:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и актёров:");
         selectSerAndAct();
-        logger.log(Level.INFO, () -> "Список актёров:");
+        logger.log(Level.INFO, () -> actorList);
         selectActors();
 
-        String DELETE_SQL = "DELETE FROM public.\"Actors\"\n" +
-                            "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Actors\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID актёра, которого хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID актёра, которого хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteCategory() {
 
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и категорий:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и категорий:");
         selectSerAndCat();
-        logger.log(Level.INFO, () -> "Список категорий:");
+        logger.log(Level.INFO, () -> categoryList);
         selectSerAndCat();
 
-        String DELETE_SQL = "DELETE FROM public.\"Category\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Category\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID категории, которую хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID категории, которую хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteComments() {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список комментариев:");
+        logger.log(Level.INFO, () -> "\nСписок комментариев:");
         selectComments();
 
-        String DELETE_SQL = "DELETE FROM public.\"Comments\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Comments\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID комментария, который необходимо удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID комментария, который необходимо удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteCountry() {
 
-        logger.log(Level.INFO, () -> "Список стран:");
+        logger.log(Level.INFO, () -> "\nСписок стран:");
         selectCountry();
 
-        String DELETE_SQL = "DELETE FROM public.\"Country\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Country\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID страны, которую необходимо удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID страны, которую необходимо удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteFilm() {
 
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и актёров:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и актёров:");
         selectSerAndAct();
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и категорий:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и категорий:");
         selectSerAndCat();
-        logger.log(Level.INFO, () -> "Список фильмов и их оценок:");
+        logger.log(Level.INFO, () -> "\nСписок фильмов и их оценок:");
         selectRating();
-        logger.log(Level.INFO, () -> "Список фильмов и их отзывов:");
+        logger.log(Level.INFO, () -> "\nСписок фильмов и их отзывов:");
         selectComments();
-        logger.log(Level.INFO, () -> "Список фильмов и их рецензий:");
+        logger.log(Level.INFO, () -> "\nСписок фильмов и их рецензий:");
         selectReviews();
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
 
-        String DELETE_SQL = "DELETE FROM public.\"Film\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Film\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма, которого хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID фильма, которого хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteProducer() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список режиссёров:");
+        logger.log(Level.INFO, () -> "\nСписок режиссёров:");
         selectProducer();
 
-        String DELETE_SQL = "DELETE FROM public.\"Producer\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Producer\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID режиссёра, которого хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID режиссёра, которого хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteRating() {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список оценок:");
+        logger.log(Level.INFO, () -> "\nСписок оценок:");
         selectRating();
 
-        String DELETE_SQL = "DELETE FROM public.\"Rating\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Rating\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма и его оценок, которые хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID фильма и его оценок, которые хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteReviews() {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список рецензий:");
+        logger.log(Level.INFO, () -> "\nСписок рецензий:");
         selectReviews();
 
-        String DELETE_SQL = "DELETE FROM public.\"Reviews\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Reviews\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID рецензии, которую хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID рецензии, которую хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteSerAndAct() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список актёров" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> "\nСписок актёров");
         selectActors();
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и актёров:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и актёров:");
         selectSerAndAct();
 
-        String DELETE_SQL = "DELETE FROM public.\"Ser_and_Act\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Ser_and_Act\"\nWHERE ser_id = ? AND act_id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID актёра, которого хотите удалить: ");
-            id = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите ID зависимости фильма и актёра, которую хотите удалить: ");
+            serID = scanner.nextInt();
+            int actID = scanner.nextInt();
 
-            statement.setInt(1, id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(1, serID);
+            statement.setInt(2, actID);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteSerAndCat() {
 
-        logger.log(Level.INFO, () -> "Список фильмов" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список категорий" + "\u001B[31m" + " (не внешний ключ):" + "\u001B[0m");
+        logger.log(Level.INFO, () -> "\nСписок категорий");
         selectCategory();
-        logger.log(Level.INFO, () -> "Список зависимостей фильмов и категорий:");
+        logger.log(Level.INFO, () -> "\nСписок зависимостей фильмов и категорий:");
         selectSerAndCat();
 
-        String DELETE_SQL = "DELETE FROM public.\"Ser_and_cat\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"Ser_and_cat\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID актёра, которого хотите удалить: ");
-            id = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите зависимость фильма и категории, которую хотите удалить: ");
+            serID = scanner.nextInt();
+            int catID = scanner.nextInt();
 
-            statement.setInt(1, id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(1, serID);
+            statement.setInt(2, catID);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void deleteUser() {
 
-        logger.log(Level.INFO, () -> "Список отзывов:");
+        logger.log(Level.INFO, () -> "\nСписок отзывов:");
         selectComments();
-        logger.log(Level.INFO, () -> "Список рецензий:");
+        logger.log(Level.INFO, () -> "\nСписок рецензий:");
         selectReviews();
-        logger.log(Level.INFO, () -> "Список пользователей:");
+        logger.log(Level.INFO, () -> "\nСписок пользователей:");
         selectUserList();
 
-        String DELETE_SQL = "DELETE FROM public.\"User\"\n" +
-                "WHERE id = ?;";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(DELETE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("DELETE FROM public.\"User\"\nWHERE id = ?;")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID актёра, которого хотите удалить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID актёра, которого хотите удалить: ");
             id = scanner.nextInt();
 
             statement.setInt(1, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось удалить строку таблицы.");
+            logger.log(Level.INFO, () -> deleteerror);
             e.printStackTrace();
         }
     }
 
     public static void updateActors() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список актёров:");
+        logger.log(Level.INFO, () -> actorList);
         selectActors();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Actors"
                 	SET name=?, description=?, age=?
-                	WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Актёр, данные о котором необходимо заменить: ");
+            logger.log(Level.INFO, () -> "\nАктёр, данные о котором необходимо заменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Напишите имя, описание и возраст актёра: ");
+            logger.log(Level.INFO, () -> "\nНапишите имя, описание и возраст актёра: ");
             name = scanner.nextLine();
             description = scanner.nextLine();
             age = scanner.nextInt();
@@ -1004,33 +925,29 @@ public class CRUDutils {
             statement.setInt(3, age);
             statement.setInt(4, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateCategory() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список категорий:");
+        logger.log(Level.INFO, () -> categoryList);
         selectActors();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Category"
                 	SET title=?, description=?
-                	WHERE id = ?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id = ?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID категории, которую необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID категории, которую необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите название и описание категории: ");
+            logger.log(Level.INFO, () -> "\nВведите название и описание категории: ");
             title = scanner.nextLine();
             description = scanner.nextLine();
 
@@ -1038,75 +955,67 @@ public class CRUDutils {
             statement.setString(2, description);
             statement.setInt(3, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateComments() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список пользователей:");
+        logger.log(Level.INFO, () -> "\nСписок пользователей:");
         selectUserList();
-        logger.log(Level.INFO, () -> "Список комментариев");
+        logger.log(Level.INFO, () -> "\nСписок комментариев");
         selectComments();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement PreparedStatement = CONNECTION.prepareStatement("""
                 UPDATE public."Comments"
                 	SET username=?, commentary=?, ser_id=?, user_id=?
-                	WHERE id = ?""";
-
-        try (PreparedStatement PreparedStatement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id = ?""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID комментария, который  необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID комментария, который  необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите имя пользователя, комментарий к сериалу, ID этого сериала и ID пользователя: ");
+            logger.log(Level.INFO, () -> "\nВведите имя пользователя, комментарий к сериалу, ID этого сериала и ID пользователя: ");
             username = scanner.nextLine();
             String commentary = scanner.nextLine();
-            ser_id = scanner.nextInt();
-            user_id = scanner.nextInt();
+            serID = scanner.nextInt();
+            userID = scanner.nextInt();
 
             PreparedStatement.setString(1, username);
             PreparedStatement.setString(2, commentary);
-            PreparedStatement.setInt(3, ser_id);
-            PreparedStatement.setInt(4, user_id);
+            PreparedStatement.setInt(3, serID);
+            PreparedStatement.setInt(4, userID);
             PreparedStatement.setInt(5, id);
-
-            logger.log(Level.INFO, (Supplier<String>) PreparedStatement);
 
             PreparedStatement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateCountry() {
 
-        logger.log(Level.INFO, () -> "Список стран:");
+        logger.log(Level.INFO, () -> "\nСписок стран:");
         selectCountry();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Country"
                 	SET title=?, description=?
-                	WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID страны, которую необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID страны, которую необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите название страны производства и описание этой страны: ");
+            logger.log(Level.INFO, () -> "\nВведите название страны производства и описание этой страны: ");
             title = scanner.nextLine();
             description = scanner.nextLine();
 
@@ -1114,77 +1023,69 @@ public class CRUDutils {
             statement.setString(2, description);
             statement.setInt(3, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateFilm() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список стран:");
+        logger.log(Level.INFO, () -> "\nСписок стран:");
         selectCountry();
-        logger.log(Level.INFO, () -> "Список режиссёров:");
+        logger.log(Level.INFO, () -> "\nСписок режиссёров:");
         selectProducer();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Film"
                 	SET title=?, description=?, year=?, prod_id=?, country_id=?
-                	WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма, который необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID фильма, который необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите название фильма, его описание, год выхода, ID режисера и ID страны: ");
+            logger.log(Level.INFO, () -> "\nВведите название фильма, его описание, год выхода, ID режисера и ID страны: ");
             name = scanner.nextLine();
             description = scanner.nextLine();
             int year = scanner.nextInt();
-            int prod_id = scanner.nextInt();
-            int country_id = scanner.nextInt();
+            int prodID = scanner.nextInt();
+            int countryID = scanner.nextInt();
 
             statement.setString(1, name);
             statement.setString(2, description);
             statement.setInt(3, year);
-            statement.setInt(4, prod_id);
-            statement.setInt(5, country_id);
+            statement.setInt(4, prodID);
+            statement.setInt(5, countryID);
             statement.setInt(6, id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateProducer() {
 
-        logger.log(Level.INFO, () -> "Список режиссёров:");
+        logger.log(Level.INFO, () -> "\nСписок режиссёров:");
         selectProducer();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Producer"
                 	SET name=?, description=?, age=?
-                	WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID режиссёра, которого необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID режиссёра, которого необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите ФИО, описание и возраст продюсера: ");
+            logger.log(Level.INFO, () -> "\nВведите ФИО, описание и возраст продюсера: ");
             name = scanner.nextLine();
             description = scanner.nextLine();
             age = scanner.nextInt();
@@ -1194,192 +1095,172 @@ public class CRUDutils {
             statement.setInt(3, age);
             statement.setInt(4, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateRating() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список рейтингов:");
+        logger.log(Level.INFO, () -> "\nСписок рейтингов:");
         selectRating();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Rating"
                     SET kp=?, imdb=?, ser_id=?
-                    WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                    WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID строчки в рейтинге, которую необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID строчки в рейтинге, которую необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите оценку фильма на кинопоиске и imdb, а также ID фильма ");
+            logger.log(Level.INFO, () -> "\nВведите оценку фильма на кинопоиске и imdb, а также ID фильма ");
             double kp = scanner.nextDouble();
             double imdb = scanner.nextDouble();
-            ser_id = scanner.nextInt();
+            serID = scanner.nextInt();
 
             statement.setDouble(1, kp);
             statement.setDouble(2, imdb);
-            statement.setInt(3, ser_id);
+            statement.setInt(3, serID);
             statement.setInt(4, id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateReviews() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список пользователей");
+        logger.log(Level.INFO, () -> usersList);
         selectUserList();
-        logger.log(Level.INFO, () -> "Список рецензий");
+        logger.log(Level.INFO, () -> "\nСписок рецензий");
         selectReviews();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Reviews"
                 	SET username=?, review=?, ser_id=?, user_id=?
-                	WHERE id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID рецензии, которую необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID рецензии, которую необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите ФИО, описание и возраст актёра: ");
+            logger.log(Level.INFO, () -> "\nВведите ФИО, описание и возраст актёра: ");
             username = scanner.nextLine();
             String review = scanner.nextLine();
-            ser_id = scanner.nextInt();
-            user_id = scanner.nextInt();
+            serID = scanner.nextInt();
+            userID = scanner.nextInt();
 
             statement.setString(1, username);
             statement.setString(2, review);
-            statement.setInt(3, ser_id);
-            statement.setInt(4, user_id);
+            statement.setInt(3, serID);
+            statement.setInt(4, userID);
             statement.setInt(5, id);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateSerAndAct() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список актёров:");
+        logger.log(Level.INFO, () -> actorList);
         selectActors();
-        logger.log(Level.INFO, () -> "Список фильмов и актёров:");
+        logger.log(Level.INFO, () -> "\nСписок фильмов и актёров:");
         selectSerAndAct();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                 UPDATE public."Ser_and_Act"
                 	SET ser_id=?, act_id=?
-                	WHERE ser_id=? AND act_id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                	WHERE ser_id=? AND act_id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма и ID актёра, отношение которых хотите поменять: ");
-            int ser_id_change = scanner.nextInt();
-            int act_id_change = scanner.nextInt();
-            logger.log(Level.INFO, () -> "Введите новые ID фильма и ID актёра: ");
-            ser_id = scanner.nextInt();
-            int act_id = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите ID фильма и ID актёра, отношение которых хотите поменять: ");
+            int serID_change = scanner.nextInt();
+            int actID_change = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите новые ID фильма и ID актёра: ");
+            serID = scanner.nextInt();
+            int actID = scanner.nextInt();
 
-            statement.setInt(1, ser_id);
-            statement.setInt(2, act_id);
-            statement.setInt(3, ser_id_change);
-            statement.setInt(4, act_id_change);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(1, serID);
+            statement.setInt(2, actID);
+            statement.setInt(3, serID_change);
+            statement.setInt(4, actID_change);
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateSerAndCat() {
 
-        logger.log(Level.INFO, () -> "Список фильмов:");
+        logger.log(Level.INFO, () -> filmList);
         selectFilm();
-        logger.log(Level.INFO, () -> "Список категорий:");
+        logger.log(Level.INFO, () -> categoryList);
         selectCategory();
-        logger.log(Level.INFO, () -> "Отношение фильмов и категорий:");
+        logger.log(Level.INFO, () -> "\nОтношение фильмов и категорий:");
         selectSerAndCat();
 
-        String UPDATE_SQL = """
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
                  UPDATE public."Ser_and_cat"
                     SET ser_id=?, cat_id=?
-                    WHERE ser_id=? AND cat_id=?;""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+                    WHERE ser_id=? AND cat_id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID фильма и ID категории, отношение которых хотите поменять: ");
-            int ser_id_change = scanner.nextInt();
-            int act_id_change = scanner.nextInt();
-            logger.log(Level.INFO, () -> "Введите новые ID фильма и ID категории фильма: ");
-            ser_id = scanner.nextInt();
-            int cat_id = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите ID фильма и ID категории, отношение которых хотите поменять: ");
+            int serID_change = scanner.nextInt();
+            int actID_change = scanner.nextInt();
+            logger.log(Level.INFO, () -> "\nВведите новые ID фильма и ID категории фильма: ");
+            serID = scanner.nextInt();
+            int catID = scanner.nextInt();
 
-            statement.setInt(1, ser_id);
-            statement.setInt(2, cat_id);
-            statement.setInt(3, ser_id_change);
-            statement.setInt(4, act_id_change);
-
-            logger.log(Level.INFO, (Supplier<String>) statement);
+            statement.setInt(1, serID);
+            statement.setInt(2, catID);
+            statement.setInt(3, serID_change);
+            statement.setInt(4, actID_change);
 
             statement.executeUpdate();
 
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }
 
     public static void updateUser() throws SQLException {
 
-        logger.log(Level.INFO, () -> "Список пользователей:");
+        logger.log(Level.INFO, () -> "\nСписок пользователей:");
         selectActors();
 
-        String UPDATE_SQL = """
-                INSERT INTO public."User"(
-                \tusername, role, email, password)
-                \tVALUES (?, ?, ?, ?);""";
-
-        try (PreparedStatement statement = CONNECTION.prepareStatement(UPDATE_SQL)) {
+        try (PreparedStatement statement = CONNECTION.prepareStatement("""
+                UPDATE public."User"
+                	SET username=?, role=?, email=?, password=?
+                	WHERE id=?;""")) {
 
             Scanner scanner = new Scanner(System.in);
 
-            logger.log(Level.INFO, () -> "Введите ID категории, которую необходимо изменить: ");
+            logger.log(Level.INFO, () -> "\nВведите ID категории, которую необходимо изменить: ");
             id = scanner.nextInt();
             scanner.nextLine();
-            logger.log(Level.INFO, () -> "Введите имя пользователя, его роль, электронную почту и пароль: ");
+            logger.log(Level.INFO, () -> "\nВведите имя пользователя, его роль, электронную почту и пароль: ");
             username = scanner.nextLine();
             String role = scanner.nextLine();
             String email = scanner.nextLine();
@@ -1391,11 +1272,9 @@ public class CRUDutils {
             statement.setString(4, password);
             statement.setInt(5, id);
 
-            logger.log(Level.INFO, (Supplier<String>) statement);
-
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> "Не удалось изменить строку таблицы.");
+            logger.log(Level.INFO, () -> "\nНе удалось изменить строку таблицы.");
             e.printStackTrace();
         }
     }

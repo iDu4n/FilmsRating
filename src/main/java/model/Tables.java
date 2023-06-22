@@ -16,7 +16,7 @@ public class Tables {
 
         Scanner scanner = new Scanner(System.in);
 
-        logger.log(Level.INFO, () -> "1. Actors \n" +
+        logger.log(Level.INFO, () -> "\n1. Actors \n" +
                            "2. Category \n" +
                            "3. Comments \n" +
                            "4. Country \n" +
@@ -29,12 +29,12 @@ public class Tables {
                            "11. User \n" +
                            "12. Выйти");
 
-        logger.log(Level.INFO, () -> "Выберите таблицу: ");
+        logger.log(Level.INFO, () -> "\nВыберите таблицу: ");
         int choiceTable = scanner.nextInt();
 
         if (choiceTable == 12) System.exit(0);
 
-        logger.log(Level.INFO, () -> "1. SELECT \n" +
+        logger.log(Level.INFO, () -> "\n1. SELECT \n" +
                          "2. INSERT \n" +
                          "3. UPDATE \n" +
                          "4. DELETE \n" +
