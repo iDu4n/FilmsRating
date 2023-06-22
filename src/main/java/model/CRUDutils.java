@@ -95,8 +95,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -119,8 +119,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -140,8 +140,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -165,8 +165,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -187,8 +187,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -209,8 +209,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -233,8 +233,8 @@ public class CRUDutils {
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> READERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> READERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -253,8 +253,8 @@ public class CRUDutils {
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> READERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> READERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -274,8 +274,8 @@ public class CRUDutils {
 
              table.close();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> READERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> READERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -298,8 +298,8 @@ public class CRUDutils {
 
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -317,8 +317,8 @@ public class CRUDutils {
             }
             table.close();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> READERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> READERROR);
+            throw new IllegalArgumentException(e);
         }
 
     }
@@ -340,8 +340,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -360,8 +360,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -390,8 +390,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, (    ) -> INSERTERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, (    ) -> INSERTERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -410,8 +410,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -441,8 +441,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> INSERTERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -463,8 +463,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -487,8 +487,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> INSERTERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -516,8 +516,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -541,8 +541,8 @@ public class CRUDutils {
 
              statement.executeUpdate();
          } catch(SQLException e){
-             logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-             throw new RuntimeException(e);
+             logger.log(Level.INFO, () -> INSERTERROR);
+             throw new IllegalArgumentException(e);
          }
     }
 
@@ -567,8 +567,8 @@ public class CRUDutils {
             statement.executeUpdate();
 
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> INSERTERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -591,8 +591,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> INSERTERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> INSERTERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -616,8 +616,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -639,8 +639,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -662,8 +662,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -683,8 +683,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -714,8 +714,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -737,8 +737,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -760,8 +760,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -783,8 +783,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -810,8 +810,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -837,8 +837,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -862,8 +862,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> DELETEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> DELETEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -891,8 +891,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -918,8 +918,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -953,7 +953,7 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage() + e.getMessage());
+            logger.log(Level.INFO, () -> UPDATEERROR);
         }
     }
 
@@ -979,8 +979,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1016,8 +1016,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1045,8 +1045,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1076,8 +1076,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1111,8 +1111,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1143,8 +1143,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1176,8 +1176,8 @@ public class CRUDutils {
             statement.executeUpdate();
 
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -1207,8 +1207,8 @@ public class CRUDutils {
 
             statement.executeUpdate();
         } catch(SQLException e){
-            logger.log(Level.INFO, () -> UPDATEERROR + e.getMessage());
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, () -> UPDATEERROR);
+            throw new IllegalArgumentException(e);
         }
     }
 }

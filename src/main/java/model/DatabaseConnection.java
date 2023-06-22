@@ -41,7 +41,7 @@ public class DatabaseConnection {
         } catch (
                 SQLException e) {
             logger.log(Level.INFO, () -> "\nConnection Failed");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return connection;
