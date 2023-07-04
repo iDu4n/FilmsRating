@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/model/CRUDutils.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/itdep/portalbackend/utils/CRUDutils.java" dialect="GenericSQL" />
   </component>
 </project>
